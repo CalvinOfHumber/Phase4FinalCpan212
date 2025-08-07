@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 #{movie.name}
+  h4 Description: #{movie.description}
+  h4 Year: #{movie.year}
+  h4 Genres: #{movie.genres}
+  h4 Rating: #{movie.rating}
+  h4 Author Of Post: #{movie.createdBy}
+
+  if currentUser === movie.createdBy
+    a(href=`/movies/${movie._id}/edit`) Edit Movie
+    form(action=`/movies/${movie._id}/delete`, method="POST", style="display:inline", onsubmit="return confirm('Are you sure you want to delete this movie?');")
+      button(type="submit") Delete Movie
+
+  br
+  button(id="receiptBtn") Show Movie Receipt
+  script(src="/script.js")
